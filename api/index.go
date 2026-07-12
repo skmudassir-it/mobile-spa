@@ -5,6 +5,7 @@ import (
 	"embed"
 	"fmt"
 	"html/template"
+	"io/fs"
 	"log"
 	"net/http"
 	"os"
@@ -228,7 +229,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	if strings.HasPrefix(path, "/static/") {
 		w.Header().Set("Cache-Control", "public, max-age=86400")
-		http.StripPrefix("/static/", http.FileServer(http.FS(staticFS))).ServeHTTP(w, r)
+		subFS, _ := fs.Sub(staticFS, "static")
+		http.StripPrefix("/static/", http.FileServer(http.FS(subFS))).ServeHTTP(w, r)
 		return
 	}
 
