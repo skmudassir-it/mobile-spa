@@ -3,11 +3,12 @@
 <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 <a href="/" class="text-xl font-bold text-purple-700" hx-get="/" hx-target="body" hx-push-url="true">✨ GlowMobile Spa</a>
 <div class="flex gap-1 text-sm">
-<a href="/" class="px-3 py-1.5 rounded hover:bg-purple-50 transition" hx-get="/" hx-target="body" hx-push-url="true">Home</a>
-<a href="/services" class="px-3 py-1.5 rounded hover:bg-purple-50 transition" hx-get="/services" hx-target="body" hx-push-url="true">Services</a>
-<a href="/about" class="px-3 py-1.5 rounded hover:bg-purple-50 transition" hx-get="/about" hx-target="body" hx-push-url="true">About</a>
-<a href="/pricing" class="px-3 py-1.5 rounded hover:bg-purple-50 transition" hx-get="/pricing" hx-target="body" hx-push-url="true">Pricing</a>
-<a href="/contact" class="px-3 py-1.5 rounded bg-purple-600 text-white hover:bg-purple-700 transition" hx-get="/contact" hx-target="body" hx-push-url="true">Book Now</a>
+{{$active := .Active}}
+<a href="/" class="px-3 py-1.5 rounded transition {{if eq $active "home"}}bg-purple-100 text-purple-700 font-medium{{else}}hover:bg-purple-50{{end}}" hx-get="/" hx-target="body" hx-push-url="true">Home</a>
+<a href="/services" class="px-3 py-1.5 rounded transition {{if eq $active "services"}}bg-purple-100 text-purple-700 font-medium{{else}}hover:bg-purple-50{{end}}" hx-get="/services" hx-target="body" hx-push-url="true">Services</a>
+<a href="/about" class="px-3 py-1.5 rounded transition {{if eq $active "about"}}bg-purple-100 text-purple-700 font-medium{{else}}hover:bg-purple-50{{end}}" hx-get="/about" hx-target="body" hx-push-url="true">About</a>
+<a href="/pricing" class="px-3 py-1.5 rounded transition {{if eq $active "pricing"}}bg-purple-100 text-purple-700 font-medium{{else}}hover:bg-purple-50{{end}}" hx-get="/pricing" hx-target="body" hx-push-url="true">Pricing</a>
+<a href="/contact" class="px-3 py-1.5 rounded transition {{if eq $active "contact"}}bg-purple-600 text-white font-medium{{else}}bg-purple-600 text-white hover:bg-purple-700{{end}}" hx-get="/contact" hx-target="body" hx-push-url="true">Book Now</a>
 </div></div></nav>
 {{end}}
 
