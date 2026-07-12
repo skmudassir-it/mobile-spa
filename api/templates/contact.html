@@ -1,0 +1,16 @@
+{{define "contact"}}
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Contact | GlowMobile Spa</title><script src="https://unpkg.com/htmx.org@2.0.4"></script><link rel="stylesheet" href="/static/style.css"></head>
+<body class="bg-white">{{template "nav"}}
+<section class="py-20 hero-bg"><div class="max-w-7xl mx-auto px-4"><div class="text-center mb-12"><span class="badge-purple">Contact</span><h1 class="text-4xl sm:text-5xl font-bold mb-4">Book Your Session</h1><p class="text-gray-500 max-w-xl mx-auto text-lg">Ready to unwind? Fill out the form and we'll match you with the perfect therapist.</p></div>
+<div class="grid lg:grid-cols-3 gap-12"><div class="lg:col-span-2"><div class="card"><div class="p-6"><h3 class="font-semibold text-lg mb-5">Request a Booking</h3>
+<form hx-post="/api/contact" hx-target="body" hx-push-url="true" class="space-y-5">
+<div class="grid sm:grid-cols-2 gap-4"><div><label class="text-sm font-medium mb-1 block">Name *</label><input name="name" required placeholder="Your full name" class="input"></div><div><label class="text-sm font-medium mb-1 block">Email *</label><input name="email" type="email" required placeholder="you@email.com" class="input"></div></div>
+<div class="grid sm:grid-cols-2 gap-4"><div><label class="text-sm font-medium mb-1 block">Phone</label><input name="phone" placeholder="(555) 000-0000" class="input"></div><div><label class="text-sm font-medium mb-1 block">Service *</label><select name="service" required class="input"><option value="">Select a service</option><option>Swedish Massage</option><option>Deep Tissue Massage</option><option>Hot Stone Massage</option><option>Prenatal Massage</option><option>HydraFacial</option><option>Anti-Aging Facial</option><option>Gel Manicure</option><option>Spa Pedicure</option><option>Couples Massage</option><option>Spa Party Package</option><option>Not Sure — Help Me Choose</option></select></div></div>
+<div><label class="text-sm font-medium mb-1 block">Message *</label><textarea name="message" required rows="4" placeholder="Preferred date, time, location, and any special requests..." class="input"></textarea></div>
+<button type="submit" class="btn-primary">✉️ Send Booking Request</button></form></div></div></div>
+<div class="space-y-6"><div class="card"><div class="p-6 space-y-4"><h3 class="font-semibold text-lg">Contact Info</h3>
+<div class="flex gap-3"><span class="text-purple-600">📞</span><div><p class="font-medium">(555) 123-4567</p><p class="text-xs text-gray-400">Call or text anytime</p></div></div>
+<div class="flex gap-3"><span class="text-purple-600">✉️</span><div><p class="font-medium">hello@glowmobilespa.com</p><p class="text-xs text-gray-400">Response within 2 hours</p></div></div>
+<div class="flex gap-3"><span class="text-purple-600">📍</span><div><p class="font-medium">Serving Metro Area</p><p class="text-xs text-gray-400">Within 25-mile radius</p></div></div></div></div>
+<div class="card"><div class="p-6"><h3 class="font-semibold text-lg mb-3">Business Hours</h3><div class="flex gap-3"><span class="text-purple-600">🕐</span><div class="text-sm space-y-1"><p>Mon–Fri: 9am – 7pm</p><p>Saturday: 10am – 5pm</p><p>Sunday: By Appointment</p></div></div></div></div></div></div></div></section>
+{{template "footer"}}</body></html>{{end}}

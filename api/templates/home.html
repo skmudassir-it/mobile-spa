@@ -1,0 +1,23 @@
+{{define "home"}}
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>GlowMobile Spa | Luxury Mobile Spa at Your Door</title><script src="https://unpkg.com/htmx.org@2.0.4"></script><link rel="stylesheet" href="/static/style.css"></head>
+<body class="bg-white text-gray-900">{{template "nav"}}
+<section class="py-20 sm:py-28 hero-bg"><div class="max-w-7xl mx-auto px-4"><div class="grid lg:grid-cols-2 gap-12 items-center"><div class="space-y-6">
+<span class="badge-purple">✨ Luxury at Your Doorstep</span>
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">The Spa That <span class="text-purple-600">Comes to You</span></h1>
+<p class="text-lg text-gray-500 max-w-lg">Professional massage, facials, manicures, and more — delivered to your home, office, or event. Relax without leaving your sanctuary.</p>
+<div class="flex flex-wrap gap-4"><a href="/contact"><button class="btn-primary">📅 Book a Session</button></a><a href="/services"><button class="btn-outline">View Services</button></a></div>
+<div class="flex items-center gap-4"><div class="flex -space-x-2"><div class="avatar">A</div><div class="avatar">M</div><div class="avatar">P</div><div class="avatar">J</div></div><p class="text-sm text-gray-500"><b class="text-gray-900">200+</b> happy clients this month</p></div>
+</div><div class="hidden lg:block"><div class="glass-card p-3"><div class="rounded-xl p-12 text-center hero-card-inner"><span class="text-6xl">💆</span><p class="text-2xl font-bold text-purple-700 mt-4">Relax.</p><p class="text-gray-500">We bring the spa to you.</p></div></div></div></div></div></section>
+
+<section class="py-20 bg-gray-50"><div class="max-w-7xl mx-auto px-4"><div class="text-center mb-12"><span class="badge-purple">Our Services</span><h2 class="text-3xl sm:text-4xl font-bold mb-4">Luxury Treatments, Delivered</h2><p class="text-gray-500 max-w-xl mx-auto">From Swedish massage to HydraFacials — premium spa experiences brought to you.</p></div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">{{range .Services}}<a href="/contact"><div class="card group hover:shadow-lg"><div class="h-44 bg-gray-200 overflow-hidden"><img src="{{.Image}}" alt="{{.Title}}" class="w-full h-full object-cover group-hover:scale-105 tr-300" loading="lazy"></div><div class="p-5"><div class="icon-box">💆</div><h3 class="font-semibold text-lg">{{.Title}}</h3><p class="text-sm text-gray-500 mt-1">{{.Description}}</p></div></div></a>{{end}}</div></div></section>
+
+<section class="py-20"><div class="max-w-7xl mx-auto px-4"><div class="text-center mb-12"><span class="badge-purple">Why GlowMobile</span><h2 class="text-3xl sm:text-4xl font-bold mb-4">The GlowMobile Difference</h2></div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">{{range .WhyUs}}<div class="card text-center"><div class="icon-box mx-auto mb-4 text-xl">{{.Icon}}</div><h3 class="font-semibold mb-2">{{.Title}}</h3><p class="text-sm text-gray-500">{{.Text}}</p></div>{{end}}</div></div></section>
+
+<section class="py-20 bg-gray-50"><div class="max-w-7xl mx-auto px-4"><div class="text-center mb-12"><span class="badge-purple">Testimonials</span><h2 class="text-3xl sm:text-4xl font-bold mb-4">What Our Clients Say</h2></div>
+<div class="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">{{range .Testimonials}}<div class="card"><p class="text-gray-500 italic mb-4">"{{.Text}}"</p><div class="text-amber-400 mb-2">⭐⭐⭐⭐⭐</div><p class="font-semibold text-sm">{{.Name}}</p></div>{{end}}</div></div></section>
+
+<section class="py-20 cta-bg text-white text-center"><div class="max-w-3xl mx-auto px-4"><span class="badge-white">Book Today</span><h2 class="text-3xl sm:text-4xl font-bold mb-4">Ready to Relax?</h2><p class="text-purple-100 max-w-lg mx-auto mb-8 text-lg">Book your mobile spa experience. We bring the luxury — you just unwind.</p>
+<div class="flex flex-wrap justify-center gap-4"><a href="/contact"><button class="bg-white text-purple-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 tr">📅 Schedule Your Session</button></a><a href="tel:+15551234567"><button class="btn-white-outline">📞 (555) 123-4567</button></a></div></div></section>
+{{template "footer"}}</body></html>{{end}}

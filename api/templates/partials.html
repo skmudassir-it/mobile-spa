@@ -1,0 +1,23 @@
+{{define "nav"}}
+<nav class="bg-white/80 backdrop-blur border-b border-gray-100 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="/" class="text-xl font-bold text-purple-700" hx-get="/" hx-target="body" hx-push-url="true">✨ GlowMobile Spa</a>
+<div class="flex gap-1 text-sm">
+<a href="/" class="px-3 py-1.5 rounded hover:bg-purple-50 transition" hx-get="/" hx-target="body" hx-push-url="true">Home</a>
+<a href="/services" class="px-3 py-1.5 rounded hover:bg-purple-50 transition" hx-get="/services" hx-target="body" hx-push-url="true">Services</a>
+<a href="/about" class="px-3 py-1.5 rounded hover:bg-purple-50 transition" hx-get="/about" hx-target="body" hx-push-url="true">About</a>
+<a href="/pricing" class="px-3 py-1.5 rounded hover:bg-purple-50 transition" hx-get="/pricing" hx-target="body" hx-push-url="true">Pricing</a>
+<a href="/contact" class="px-3 py-1.5 rounded bg-purple-600 text-white hover:bg-purple-700 transition" hx-get="/contact" hx-target="body" hx-push-url="true">Book Now</a>
+</div></div></nav>
+{{end}}
+
+{{define "footer"}}
+<footer class="bg-gray-900 text-gray-400 py-12">
+<div class="max-w-7xl mx-auto px-4 grid sm:grid-cols-3 gap-8">
+<div><h3 class="text-white font-semibold mb-3">✨ GlowMobile Spa</h3><p class="text-sm">Luxury spa treatments delivered to your door. Relax — we'll come to you.</p></div>
+<div><h3 class="text-white font-semibold mb-3">Services</h3><ul class="text-sm space-y-1"><li>Swedish Massage</li><li>Deep Tissue</li><li>HydraFacial</li><li>Gel Manicure</li><li>Spa Pedicure</li></ul></div>
+<div><h3 class="text-white font-semibold mb-3">Contact</h3><ul class="text-sm space-y-1"><li>📞 (555) 123-4567</li><li>✉️ hello@glowmobilespa.com</li><li>📍 Serving Metro Area</li></ul></div>
+</div>
+<div class="text-center text-xs mt-8 pt-8 border-t border-gray-800 max-w-7xl mx-auto px-4">© 2026 GlowMobile Spa. All rights reserved.</div>
+</footer>
+{{end}}

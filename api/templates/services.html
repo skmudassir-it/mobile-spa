@@ -1,0 +1,8 @@
+{{define "services"}}
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Services | GlowMobile Spa</title><script src="https://unpkg.com/htmx.org@2.0.4"></script><link rel="stylesheet" href="/static/style.css"></head>
+<body class="bg-white">{{template "nav"}}
+<section class="py-20 hero-bg"><div class="max-w-7xl mx-auto px-4"><div class="text-center mb-12"><span class="badge-purple">Our Services</span><h1 class="text-4xl sm:text-5xl font-bold mb-4">Luxury Spa Treatments</h1><p class="text-gray-500 max-w-xl mx-auto text-lg">Professional spa services delivered to your home, office, or event.</p></div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+{{range .Data.Services}}<a href="/contact"><div class="card group hover:shadow-lg"><div class="h-44 bg-gray-200 overflow-hidden"><img src="{{.Image}}" alt="{{.Title}}" class="w-full h-full object-cover group-hover:scale-105 tr-300" loading="lazy"></div><div class="p-5"><span class="badge-purple text-xs">{{.Category}}</span><h3 class="font-semibold text-lg mt-2">{{.Title}}</h3><p class="text-sm text-gray-500 mt-1">{{.Description}}</p><ul class="text-xs text-gray-400 mt-3 space-y-1">{{range .Features}}<li>✓ {{.}}</li>{{end}}</ul></div></div></a>{{end}}
+</div></div></section>
+{{template "footer"}}</body></html>{{end}}

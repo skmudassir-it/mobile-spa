@@ -1,0 +1,5 @@
+{{define "contact-success"}}
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Thank You | GlowMobile Spa</title><script src="https://unpkg.com/htmx.org@2.0.4"></script><link rel="stylesheet" href="/static/style.css"></head>
+<body class="bg-white">{{template "nav"}}
+<section class="py-20"><div class="max-w-lg mx-auto px-4 text-center"><div class="card p-12"><span class="text-6xl">✅</span><h1 class="text-3xl font-bold mt-6 mb-4">Thank You!</h1><p class="text-gray-500 mb-6">{{.Message}}</p><a href="/contact"><button class="btn-outline">Send Another Request</button></a></div></div></section>
+{{template "footer"}}</body></html>{{end}}
