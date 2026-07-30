@@ -1,5 +1,24 @@
 {{define "contact-success"}}
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Thank You | GlowMobile Spa</title><script src="https://unpkg.com/htmx.org@2.0.4"></script><link rel="stylesheet" href="/static/style.css"></head>
-<body class="bg-white">{{template "nav"}}
-<section class="py-20"><div class="max-w-lg mx-auto px-4 text-center"><div class="card p-12"><span class="text-6xl">✅</span><h1 class="text-3xl font-bold mt-6 mb-4">Thank You!</h1><p class="text-gray-500 mb-6">{{.Message}}</p><a href="/contact"><button class="btn-outline">Send Another Request</button></a></div></div></section>
-{{template "footer"}}</body></html>{{end}}
+<!DOCTYPE html><html lang="en"><head>{{template "head" .}}</head>
+<body class="bg-white" x-data x-init="setTimeout(() => $dispatch('show-toast', { message: 'Booking request sent! We\\'ll reply within 2 hours. ✨' }), 200)">
+{{template "nav" .}}
+
+<section class="py-20"><div class="max-w-lg mx-auto px-4 text-center" x-intersect:enter="animate-fade-in-up">
+<div class="card p-12">
+<div x-data="{ emoji: '✅' }" x-init="setTimeout(() => emoji = '🎉', 800); setTimeout(() => emoji = '✨', 1600); setTimeout(() => emoji = '💜', 2400)">
+<span class="text-6xl" x-text="emoji" x-transition></span>
+</div>
+<h1 class="text-3xl font-bold mt-6 mb-4">Thank You!</h1>
+<p class="text-gray-500 mb-6">{{.Message}}</p>
+<div class="flex flex-col gap-3 items-center">
+<a href="/contact"><button class="btn-outline">Send Another Request</button></a>
+<a href="/"><button class="btn-primary">🏠 Back to Home</button></a>
+</div>
+</div>
+<div class="mt-8 text-sm text-gray-400">
+<p>Want to speak to someone right now?</p>
+<a href="tel:+15551234567" class="text-purple-600 font-semibold hover:underline">📞 Call (555) 123-4567</a>
+</div>
+</div></section>
+
+{{template "footer" .}}</body></html>{{end}}

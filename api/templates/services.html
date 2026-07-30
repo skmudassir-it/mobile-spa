@@ -1,8 +1,32 @@
 {{define "services"}}
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Services | GlowMobile Spa</title><script src="https://unpkg.com/htmx.org@2.0.4"></script><link rel="stylesheet" href="/static/style.css"></head>
-<body class="bg-white">{{template "nav"}}
-<section class="py-20 hero-bg"><div class="max-w-7xl mx-auto px-4"><div class="text-center mb-12"><span class="badge-purple">Our Services</span><h1 class="text-4xl sm:text-5xl font-bold mb-4">Luxury Spa Treatments</h1><p class="text-gray-500 max-w-xl mx-auto text-lg">Professional spa services delivered to your home, office, or event.</p></div>
+<!DOCTYPE html><html lang="en"><head>{{template "head" .}}</head>
+<body class="bg-white" x-data="{ category: 'all', lightbox: null }">
+{{template "nav" .}}
+
+<section class="py-20 hero-bg"><div class="max-w-7xl mx-auto px-4">
+<div class="text-center mb-12" x-intersect:enter="animate-fade-in"><span class="badge-purple">Our Services</span><h1 class="text-4xl sm:text-5xl font-bold mb-4">Luxury Spa Treatments</h1><p class="text-gray-500 max-w-xl mx-auto text-lg">Professional spa services delivered to your home, office, or event.</p></div>
+
+<!-- Category filter pills -->
+<div class="flex flex-wrap justify-center gap-2 mb-10" x-data>
+{{$cats := .Categories}}
+<button @click="category = 'all'" class="px-4 py-2 rounded-full text-sm font-medium transition" :class="category === 'all' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'">All</button>
+{{range .Categories}}<button @click="category = '{{.}}'" class="px-4 py-2 rounded-full text-sm font-medium transition" :class="category === '{{.}}' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'">{{.}}</button>{{end}}
+</div>
+
+<!-- Services grid with filter -->
 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-{{range .Data.Services}}<a href="/contact"><div class="card group hover:shadow-lg"><div class="h-44 bg-gray-200 overflow-hidden"><img src="{{.Image}}" alt="{{.Title}}" class="w-full h-full object-cover group-hover:scale-105 tr-300" loading="lazy"></div><div class="p-5"><span class="badge-purple text-xs">{{.Category}}</span><h3 class="font-semibold text-lg mt-2">{{.Title}}</h3><p class="text-sm text-gray-500 mt-1">{{.Description}}</p><ul class="text-xs text-gray-400 mt-3 space-y-1">{{range .Features}}<li>✓ {{.}}</li>{{end}}</ul></div></div></a>{{end}}
+{{range $i, $s := .AllServices}}
+<div x-show="category === 'all' || category === '{{$s.Category}}'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" class="card group hover:shadow-lg cursor-pointer" @click="lightbox = {title: '{{$s.Title}}', img: '{{$s.Image}}', desc: '{{$s.Description}}', features: '{{join ", " $s.Features}}'}">
+<div class="h-44 bg-gray-200 overflow-hidden"><img src="{{$s.Image}}" alt="{{$s.Title}}" class="w-full h-full object-cover group-hover:scale-105 tr-300" loading="lazy"></div>
+<div class="p-5"><span class="badge-purple text-xs">{{$s.Category}}</span><h3 class="font-semibold text-lg mt-2">{{$s.Title}}</h3><p class="text-sm text-gray-500 mt-1">{{$s.Description}}</p><ul class="text-xs text-gray-400 mt-3 space-y-1">{{range $s.Features}}<li>✓ {{.}}</li>{{end}}</ul></div>
+</div>{{end}}
 </div></div></section>
-{{template "footer"}}</body></html>{{end}}
+
+<!-- Lightbox -->
+<div x-show="lightbox" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" @click.self="lightbox = null" @keydown.escape.window="lightbox = null">
+<div class="bg-white rounded-2xl max-w-lg w-full mx-4 overflow-hidden shadow-2xl" @click.stop>
+<div class="relative h-64 bg-gray-200"><img :src="lightbox?.img" :alt="lightbox?.title" class="w-full h-full object-cover"><button @click="lightbox = null" class="absolute top-3 right-3 p-2 rounded-full bg-white/80 hover:bg-white tr"><svg class="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button></div>
+<div class="p-6"><h3 class="text-xl font-bold" x-text="lightbox?.title"></h3><p class="text-gray-500 mt-2" x-text="lightbox?.desc"></p><div class="mt-4"><a href="/contact"><button class="btn-primary w-full">📅 Book This Service</button></a></div></div>
+</div></div>
+
+{{template "footer" .}}</body></html>{{end}}

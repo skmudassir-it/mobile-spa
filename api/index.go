@@ -77,6 +77,25 @@ func initDB() {
 func loadTemplates() {
 	tmpl = template.Must(template.New("").Funcs(template.FuncMap{
 		"join": func(sep string, items []string) string { return strings.Join(items, sep) },
+		"mul":  func(a, b int) int { return a * b },
+		"len":  func(v interface{}) int {
+			switch val := v.(type) {
+			case []Service:
+				return len(val)
+			case []Testimonial:
+				return len(val)
+			case []Value:
+				return len(val)
+			case []TeamMember:
+				return len(val)
+			case []PricingPlan:
+				return len(val)
+			case []FAQ:
+				return len(val)
+			default:
+				return 0
+			}
+		},
 	}).ParseFS(templateFS, "templates/*.html"))
 }
 
