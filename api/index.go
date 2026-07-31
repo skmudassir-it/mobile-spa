@@ -8,7 +8,6 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 	"sync"
 
@@ -271,14 +270,3 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Local dev
-func main() {
-	initDB()
-	loadTemplates()
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000"
-	}
-	log.Printf("GlowMobile Spa running on http://localhost:%s", port)
-	log.Fatal(http.ListenAndServe(":"+port, http.HandlerFunc(Handler)))
-}
